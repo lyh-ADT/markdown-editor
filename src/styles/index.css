@@ -106,3 +106,13 @@ textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-muted);
 }
+
+/* 覆盖 CodeMirror One Dark 主题的行号/装订线暗色背景 */
+.cm-gutters {
+  background: var(--color-bg-elevated) !important;
+  border-right-color: var(--color-border) !important;
+  color: var(--color-text-muted) !important;
+}
+.cm-activeLineGutter {
+  background: var(--color-bg-hover) !important;
+}
