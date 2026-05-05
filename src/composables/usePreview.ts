@@ -97,6 +97,16 @@ export function usePreview() {
       }
     });
 
+    // ①-c 行内公式：剥掉 math_inline 包裹，只留 <math>（与块级公式一致）
+    content.querySelectorAll('[data-type="math_inline"]').forEach((el) => {
+      const mathml = el.querySelector('math');
+      if (mathml) (el as HTMLElement).replaceWith(mathml);
+      else {
+        const katex = el.querySelector('.katex');
+        if (katex) (el as HTMLElement).replaceWith(katex);
+      }
+    });
+
     // ② 移除交互/浮动 UI
     content.querySelectorAll(
       'button, .code-block-config, .block-edit, .milkdown-toolbar, .milkdown-top-bar, .latex-config, .block-handle, .image-toolbar, .milkdown-tooltip',
@@ -139,7 +149,6 @@ export function usePreview() {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.css">
 ${styles}
 <style>
   :root {
@@ -189,7 +198,18 @@ ${styles}
   [style*="#282c34"], [style*="#2c313a"], [style*="#21252b"] {
     background: transparent !important;
   }
-</style>
+  /* 阻止收集的外部样式污染 KaTeX 内部定位（上下标依赖 position/display 精确值） */
+  .katex, .katex * {
+    line-height: normal !important;
+    vertical-align: baseline;
+  }
+  .katex .msupsub, .katex .vlist-t, .katex .vlist-r, .katex .vlist {
+    position: relative !important;
+  }
+  .katex .msupsub .vlist-t, .katex .mfrac .vlist-t {
+    display: inline-table !important;
+  }
+    </style>
 </head>
 <body class="has-toolbar">
 <div class="PreviewToolbar">
