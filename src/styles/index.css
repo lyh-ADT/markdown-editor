@@ -116,3 +116,19 @@ textarea {
 .cm-activeLineGutter {
   background: var(--color-bg-hover) !important;
 }
+
+/* 覆盖 CodeMirror One Dark 的浅色语法高亮，改用主题色 */
+.cm-content {
+  color: var(--color-text) !important;
+}
+.cm-content .ͼ1 .cm-line,
+.cm-content [class*="tok-"] {
+  color: var(--color-text) !important;
+}
+.cm-content .tok-keyword { color: var(--color-accent) !important; }
+.cm-content .tok-string  { color: #059669 !important; }
+[data-theme="dark"] .cm-content .tok-string { color: #34d399 !important; }
+.cm-content .tok-comment { color: var(--color-text-muted) !important; font-style: italic; }
+.cm-content .tok-number  { color: #d97706 !important; }
+[data-theme="dark"] .cm-content .tok-number { color: #fbbf24 !important; }
+.cm-cursor, .cm-cursorLayer { caret-color: var(--color-text) !important; }
