@@ -2,6 +2,8 @@
 
 纯浏览器端 Typora 风格 Markdown 编辑器，基于 Vue 3 + Milkdown。
 
+[在线使用](https://lyh-adt.github.io/markdown-editor/)
+
 ## 功能
 
 - **Typora IR 模式** — 光标所在行显示原始 Markdown 语法（`#` `**` `*` `[text](url)` `>` `` ` ``），其他行实时渲染为富文本
