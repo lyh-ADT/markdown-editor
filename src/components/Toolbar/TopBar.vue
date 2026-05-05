@@ -4,10 +4,12 @@ import { ref } from 'vue';
 import { useDocStore } from '@/composables/useDocStore';
 import { useFileSystem } from '@/composables/useFileSystem';
 import { useTheme } from '@/composables/useTheme';
+import { usePreview } from '@/composables/usePreview';
 
 const store = useDocStore();
 const fs = useFileSystem();
 const { theme, toggle: toggleTheme } = useTheme();
+const { openPreview } = usePreview();
 
 const busy = ref(false);
 const errorMsg = ref<string | null>(null);
@@ -41,6 +43,7 @@ const handleSaveAs = () => guarded(() => fs.saveAs());
       <button :disabled="busy" title="打开 (Ctrl+O)" @click="handleOpen">打开</button>
       <button :disabled="busy" title="保存 (Ctrl+S)" @click="handleSave">保存</button>
       <button :disabled="busy" @click="handleSaveAs">另存为</button>
+      <button :disabled="busy" title="预览" @click="openPreview">预览</button>
       <button
         class="topbar__theme"
         :title="theme === 'dark' ? '切换到亮色' : '切换到暗色'"

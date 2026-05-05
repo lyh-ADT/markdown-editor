@@ -45,6 +45,16 @@ $$
 \\int_{a}^{b} f(x)\\,dx = F(b) - F(a)
 $$
 
+## 流程图
+
+\`\`\`mermaid
+graph TD
+    A[开始] --> B{条件判断}
+    B -->|是| C[执行操作]
+    B -->|否| D[结束]
+    C --> D
+\`\`\`
+
 \`\`\`ts
 console.log('Hello, Markdown!');
 \`\`\`
