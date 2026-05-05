@@ -32,7 +32,18 @@ const DEFAULT_CONTENT = `# 欢迎使用 Markdown Editor
 
 - Typora 风格实时渲染（光标所在行显示 Markdown 语法）
 - 代码块、表格、任务列表
+- 数学公式渲染（KaTeX）
 - IndexedDB 自动保存 + 本地文件读写
+
+## 数学公式
+
+行内公式：$E = mc^2$
+
+块级公式：
+
+$$
+\\int_{a}^{b} f(x)\\,dx = F(b) - F(a)
+$$
 
 \`\`\`ts
 console.log('Hello, Markdown!');

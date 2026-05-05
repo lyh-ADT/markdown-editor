@@ -1,4 +1,4 @@
-﻿import { Crepe } from '@milkdown/crepe';
+﻿import { Crepe, CrepeFeature } from '@milkdown/crepe';
 
 import '@milkdown/crepe/theme/common/style.css';
 import '@milkdown/crepe/theme/frame.css';
@@ -36,6 +36,9 @@ export async function createEditor(options: CreateEditorOptions): Promise<Editor
   const crepe = new Crepe({
     root,
     defaultValue: initialMarkdown,
+    features: {
+      [CrepeFeature.Latex]: true,
+    },
   });
 
   // 在 Crepe 默认插件之后追加自研 Typora IR 装饰器。
