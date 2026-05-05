@@ -34,12 +34,14 @@ jobs:
         run: pnpm build
 
       - name: Deploy to lyhadt.github.io
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          personal_token: ${{ secrets.GH_PAT }}
-          external_repository: lyh-ADT/lyh-adt.github.io
-          publish_dir: ./dist
-          destination_dir: docs/markdown-editor
-          publish_branch: master
-          force_orphan: false
-          commit_message: 'deploy: markdown-editor ${{ github.sha }}'
+        run: |
+          git clone --depth 1 --branch master https://x-access-token:${{ secrets.GH_PAT }}@github.com/lyh-ADT/lyh-adt.github.io.git /tmp/pages
+          rm -rf /tmp/pages/docs/markdown-editor
+          mkdir -p /tmp/pages/docs/markdown-editor
+          cp -r dist/* /tmp/pages/docs/markdown-editor/
+          cd /tmp/pages
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add docs/markdown-editor/
+          git diff --cached --quiet || git commit -m "deploy: markdown-editor ${{ github.sha }}"
+          git push origin master
