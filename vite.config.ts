@@ -7,15 +7,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules/lodash-es') || id.includes('node_modules/khroma') || id.includes('node_modules/dayjs')) {
-            return 'mermaid-deps';
-          }
-        },
-      },
-    },
   },
   plugins: [vue()],
   resolve: {
